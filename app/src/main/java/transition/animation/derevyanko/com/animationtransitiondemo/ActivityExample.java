@@ -1,36 +1,21 @@
 package transition.animation.derevyanko.com.animationtransitiondemo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import butterknife.OnClick;
 
-
-public class StartActivity extends BaseActivity {
+public class ActivityExample extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start);
-    }
-
-    @SuppressWarnings("unused")
-    @OnClick(R.id.btnStartActivityExample)
-    void startActivityExample() {
-        startActivity(new Intent(this, ActivityExample.class));
-    }
-
-    @SuppressWarnings("unused")
-    @OnClick(R.id.btnStartFragmentExample)
-    void startFragmentExample() {
-
+        setContentView(R.layout.activity_activity_example);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_start, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_example, menu);
         return true;
     }
 
