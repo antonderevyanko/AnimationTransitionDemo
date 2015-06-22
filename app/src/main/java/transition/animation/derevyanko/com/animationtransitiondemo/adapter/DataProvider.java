@@ -1,6 +1,7 @@
 package transition.animation.derevyanko.com.animationtransitiondemo.adapter;
 
 import android.content.Context;
+import com.thedeanda.lorem.Lorem;
 import transition.animation.derevyanko.com.animationtransitiondemo.R;
 import transition.animation.derevyanko.com.animationtransitiondemo.exception.NoResourceException;
 
@@ -14,9 +15,13 @@ public final class DataProvider {
             R.drawable.img_9, R.drawable.img_10, R.drawable.img_11, R.drawable.img_12, R.drawable.img_13,
             R.drawable.img_14, R.drawable.img_15, R.drawable.img_16};
 
+    public static int getDataSize() {
+        return IMAGE_RESOURCES.length;
+    }
+
     public static int getImageIdByPosition(int position) throws NoResourceException {
         if (position <= IMAGE_RESOURCES.length) {
-            return IMAGE_RESOURCES[position + 1];
+            return IMAGE_RESOURCES[position];
         } else {
             throw new NoResourceException(position);
         }
@@ -24,5 +29,9 @@ public final class DataProvider {
 
     public static String getTitleByPosition(Context context, int position) {
         return context.getResources().getString(R.string.title, position);
+    }
+
+    public static String getTextByPosition(int position) {
+        return Lorem.getParagraphs(2, 5);
     }
 }

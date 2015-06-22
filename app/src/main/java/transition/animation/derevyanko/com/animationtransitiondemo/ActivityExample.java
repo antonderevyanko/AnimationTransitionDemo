@@ -1,15 +1,26 @@
 package transition.animation.derevyanko.com.animationtransitiondemo;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import butterknife.InjectView;
+import transition.animation.derevyanko.com.animationtransitiondemo.adapter.CardsAdapter;
+import transition.animation.derevyanko.com.animationtransitiondemo.adapter.DataProvider;
 
 public class ActivityExample extends BaseActivity {
+
+    @InjectView(R.id.recyclerList)
+    RecyclerView recyclerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_example);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerList.setLayoutManager(layoutManager);
+        recyclerList.setAdapter(new CardsAdapter(DataProvider.getDataSize()));
     }
 
     @Override

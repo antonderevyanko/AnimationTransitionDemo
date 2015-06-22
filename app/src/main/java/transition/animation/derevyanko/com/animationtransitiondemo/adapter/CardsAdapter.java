@@ -1,40 +1,36 @@
 package transition.animation.derevyanko.com.animationtransitiondemo.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import transition.animation.derevyanko.com.animationtransitiondemo.R;
+import transition.animation.derevyanko.com.animationtransitiondemo.view.CardViewHolder;
 
 /**
  * Created by anton on 6/22/15.
  */
-public final class CardsAdapter extends RecyclerView.Adapter<QuoteViewHolder> {
+public final class CardsAdapter extends RecyclerView.Adapter<CardViewHolder> {
 
-    private List<Quote> quotes;
+    private int size;
 
-    public QuotesRecyclerAdapter(List<Quote> quotes) {
-        updateData(quotes);
-    }
-
-    public void updateData(List<Quote> quotes) {
-        this.quotes = quotes;
+    public CardsAdapter(int size) {
+        this.size = size;
     }
 
     @Override
-    public QuoteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.quote_widget, parent, false);
-        return new QuoteViewHolder(view);
+    public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_view, parent, false);
+        return new CardViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final QuoteViewHolder holder, int position) {
-        holder.setData(quotes.get(position));
+    public void onBindViewHolder(final CardViewHolder holder, int position) {
+        holder.setData(position);
     }
 
     @Override
     public int getItemCount() {
-        return quotes.size();
-    }
-
-    public void removeItem(int itemPosition) {
-        notifyItemRemoved(itemPosition);
-        quotes.remove(itemPosition);
+        return size;
     }
 }
