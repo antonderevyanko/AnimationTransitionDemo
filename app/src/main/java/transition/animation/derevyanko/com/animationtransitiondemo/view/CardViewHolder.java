@@ -5,9 +5,11 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
@@ -15,6 +17,9 @@ import butterknife.InjectView;
 import transition.animation.derevyanko.com.animationtransitiondemo.R;
 import transition.animation.derevyanko.com.animationtransitiondemo.activity.DetailActivity;
 import transition.animation.derevyanko.com.animationtransitiondemo.adapter.DataProvider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by anton on 6/22/15.
@@ -50,9 +55,19 @@ public final class CardViewHolder extends RecyclerView.ViewHolder implements Vie
         intent.putExtra(DetailActivity.KEY_IMAGE_NUMBER, position);
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
-                    Pair.create((View) image, image.getTransitionName()));
-            context.startActivity(intent, options.toBundle());
+            Activity activity = (Activity) context;
+            View statusBar = activity.findViewById(android.R.id.statusBarBackground);
+            View navigationBar = activity.findViewById(android.R.id.navigationBarBackground);
+            // todo handle action bar
+
+            List<Pair<View, String>> pairs = new ArrayList<>();
+            pairs.add(Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME));
+            pairs.add(Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME));
+            pairs.add(Pair.create((View) image, image.getTransitionName()));
+
+            Bundle options = ActivityOptions.makeSceneTransitionAnimation(activity,
+                    pairs.toArray(new Pair[pairs.size()])).toBundle();
+            activity.startActivity(intent, options);
         } else {
             context.startActivity(intent);
         }
