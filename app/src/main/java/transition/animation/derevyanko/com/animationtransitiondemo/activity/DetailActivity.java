@@ -2,11 +2,13 @@ package transition.animation.derevyanko.com.animationtransitiondemo.activity;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 import butterknife.InjectView;
 import transition.animation.derevyanko.com.animationtransitiondemo.BaseActivity;
 import transition.animation.derevyanko.com.animationtransitiondemo.R;
@@ -15,14 +17,30 @@ import transition.animation.derevyanko.com.animationtransitiondemo.adapter.DataP
 public class DetailActivity extends BaseActivity {
 
     public static final String KEY_IMAGE_NUMBER = "image_number";
+    private static final int DELAY_MILLIS = 500;
 
     @InjectView(R.id.itemImage)
     ImageView image;
+    @InjectView(R.id.itemTitle)
+    TextView title;
+    @InjectView(R.id.itemText)
+    TextView text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide transition = new Slide();
+            transition.setStartDelay(DELAY_MILLIS);
+            transition.setDuration(DELAY_MILLIS);
+            transition.setInterpolator(new DecelerateInterpolator());
+            getWindow().setEnterTransition(transition);
+            Slide slideDown = new Slide(Gravity.BOTTOM);
+            slideDown.setDuration(150);
+            getWindow().setReturnTransition(slideDown);
+        }
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Postpone the transition until the window's decor view has
@@ -42,29 +60,11 @@ public class DetailActivity extends BaseActivity {
             });
         }
 
-        int positionInList = getIntent().getIntExtra(KEY_IMAGE_NUMBER, 1);
-        image.setImageDrawable(getResources().getDrawable(DataProvider.getImageIdByPosition(positionInList)));
-    }
+        int position = getIntent().getIntExtra(KEY_IMAGE_NUMBER, 1);
+        image.setImageDrawable(getResources().getDrawable(DataProvider.getImageIdByPosition(position)));
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_detail, menu);
-        return true;
-    }
+        title.setText(DataProvider.getTitleByPosition(this, position));
+        text.setText(DataProvider.getTextByPosition(position));
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

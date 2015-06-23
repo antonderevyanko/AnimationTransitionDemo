@@ -11,4 +11,25 @@
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="200dp"/>
+    <LinearLayout
+        android:id="@+id/detail_text_container"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_below="@+id/itemImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/itemTitle"
+            android:fontFamily="sans-serif-bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/itemText"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>

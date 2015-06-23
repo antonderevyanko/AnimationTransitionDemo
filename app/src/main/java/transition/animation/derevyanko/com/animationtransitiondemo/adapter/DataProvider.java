@@ -28,7 +28,7 @@ public final class DataProvider {
     }
 
     public static String getTitleByPosition(Context context, int position) {
-        return context.getResources().getString(R.string.title, position);
+        return context.getResources().getString(R.string.title, position + 1);
     }
 
     public static String getTextByPosition(int position) {

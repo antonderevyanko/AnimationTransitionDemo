@@ -62,7 +62,9 @@ public final class CardViewHolder extends RecyclerView.ViewHolder implements Vie
 
             List<Pair<View, String>> pairs = new ArrayList<>();
             pairs.add(Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME));
-            pairs.add(Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME));
+            if (navigationBar != null) {
+                pairs.add(Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME));
+            }
             pairs.add(Pair.create((View) image, image.getTransitionName()));
 
             Bundle options = ActivityOptions.makeSceneTransitionAnimation(activity,
