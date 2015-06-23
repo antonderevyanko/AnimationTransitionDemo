@@ -5,4 +5,5 @@
     <string name="title_activity_activity_example">ActivityExample</string>
 
     <string name="title">Title for the section %s</string>
+    <string name="title_activity_detail">DetailActivity</string>
 </resources>
