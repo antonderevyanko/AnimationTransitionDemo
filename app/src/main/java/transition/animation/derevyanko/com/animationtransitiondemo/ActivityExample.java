@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import butterknife.InjectView;
 import transition.animation.derevyanko.com.animationtransitiondemo.adapter.CardsAdapter;
 import transition.animation.derevyanko.com.animationtransitiondemo.adapter.DataProvider;
+import transition.animation.derevyanko.com.animationtransitiondemo.util.FirstItemOffsetDecoration;
 
 public class ActivityExample extends BaseActivity {
 
@@ -19,6 +20,7 @@ public class ActivityExample extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_example);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerList.addItemDecoration(new FirstItemOffsetDecoration(this));
         recyclerList.setLayoutManager(layoutManager);
         recyclerList.setAdapter(new CardsAdapter(DataProvider.getDataSize()));
     }
