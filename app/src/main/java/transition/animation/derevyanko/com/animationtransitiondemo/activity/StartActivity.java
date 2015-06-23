@@ -1,10 +1,12 @@
-package transition.animation.derevyanko.com.animationtransitiondemo;
+package transition.animation.derevyanko.com.animationtransitiondemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.OnClick;
+import transition.animation.derevyanko.com.animationtransitiondemo.BaseActivity;
+import transition.animation.derevyanko.com.animationtransitiondemo.R;
 
 
 public class StartActivity extends BaseActivity {

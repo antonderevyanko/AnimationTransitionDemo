@@ -1,4 +1,4 @@
-package transition.animation.derevyanko.com.animationtransitiondemo;
+package transition.animation.derevyanko.com.animationtransitiondemo.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.InjectView;
+import transition.animation.derevyanko.com.animationtransitiondemo.BaseActivity;
+import transition.animation.derevyanko.com.animationtransitiondemo.R;
 import transition.animation.derevyanko.com.animationtransitiondemo.adapter.CardsAdapter;
 import transition.animation.derevyanko.com.animationtransitiondemo.adapter.DataProvider;
 import transition.animation.derevyanko.com.animationtransitiondemo.util.FirstItemOffsetDecoration;
